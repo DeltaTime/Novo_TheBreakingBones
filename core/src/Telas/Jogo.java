@@ -58,14 +58,21 @@ public class Jogo implements Screen{
         sprite_player.draw(game.batch);
         game.batch.end();
         
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) 
-            sprite_player.setX(sprite_player.getX()-200 * Gdx.graphics.getDeltaTime());
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) 
-            sprite_player.setX(sprite_player.getX()+200 * Gdx.graphics.getDeltaTime());
-        if(Gdx.input.isKeyPressed(Input.Keys.UP)) 
-            sprite_player.setY(sprite_player.getY()+200 * Gdx.graphics.getDeltaTime());
-        if(Gdx.input.isKeyPressed(Input.Keys.DOWN)) 
-            sprite_player.setY(sprite_player.getY()-200 * Gdx.graphics.getDeltaTime());
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT))
+            if (sprite_player.getX() > 0 )
+                sprite_player.setX(sprite_player.getX()-200 * Gdx.graphics.getDeltaTime());
+
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT))
+            if (sprite_player.getX() < (Gdx.graphics.getWidth() - sprite_player.getWidth()) )
+                sprite_player.setX(sprite_player.getX()+200 * Gdx.graphics.getDeltaTime());
+
+        if(Gdx.input.isKeyPressed(Input.Keys.UP))
+            if (sprite_player.getY() < (Gdx.graphics.getHeight() - sprite_player.getHeight()) )
+                sprite_player.setY(sprite_player.getY()+200 * Gdx.graphics.getDeltaTime());
+
+        if(Gdx.input.isKeyPressed(Input.Keys.DOWN))
+            if (sprite_player.getY() > 0 )
+                sprite_player.setY(sprite_player.getY()-200 * Gdx.graphics.getDeltaTime());
         
     }
 
