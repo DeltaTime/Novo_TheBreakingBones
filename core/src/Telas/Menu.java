@@ -5,13 +5,14 @@
  */
 package Telas;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector3;
 import thebreakingbones.TheBreakingBones;
 
 /**
@@ -22,6 +23,7 @@ public class Menu implements Screen {
     
     private TheBreakingBones game;
     private OrthographicCamera camera;
+    private Vector3 click_posicao;
     
     private Texture texture_novojogo;
     private Texture texture_dificuldade;
@@ -36,6 +38,7 @@ public class Menu implements Screen {
         this.game = game;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);
+        click_posicao = new Vector3();
         
         
     }
@@ -88,11 +91,50 @@ public class Menu implements Screen {
         game.batch.begin();
         sprite_novojogo.draw(game.batch);
         game.batch.end();
-
-        if (Gdx.input.isTouched()) {
-            game.setScreen(new Jogo(game));
-            dispose();
+        
+        if(Gdx.input.isTouched()){
+            click_posicao.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+            camera.unproject(click_posicao);
+            if(click_posicao.x > sprite_novojogo.getX() && click_posicao.x < (sprite_novojogo.getX() + sprite_novojogo.getWidth())){
+                if(click_posicao.y > sprite_novojogo.getY() && click_posicao.y < (sprite_novojogo.getY() + sprite_novojogo.getHeight())){
+                    game.setScreen(new Jogo(game));
+                    dispose();
+                }
+            }
         }
+        
+        if(Gdx.input.isTouched()){
+            click_posicao.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+            camera.unproject(click_posicao);
+            if(click_posicao.x > sprite_dificuldade.getX() && click_posicao.x < (sprite_dificuldade.getX() + sprite_dificuldade.getWidth())){
+                if(click_posicao.y > sprite_dificuldade.getY() && click_posicao.y < (sprite_dificuldade.getY() + sprite_dificuldade.getHeight())){
+                    game.setScreen(new Dificuldade(game));
+                    dispose();
+                }
+            }
+        }
+        
+        if(Gdx.input.isTouched()){
+            click_posicao.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+            camera.unproject(click_posicao);
+            if(click_posicao.x > sprite_ajuda.getX() && click_posicao.x < (sprite_ajuda.getX() + sprite_ajuda.getWidth())){
+                if(click_posicao.y > sprite_ajuda.getY() && click_posicao.y < (sprite_ajuda.getY() + sprite_ajuda.getHeight())){
+                    game.setScreen(new Ajuda(game));
+                    dispose();
+                }
+            }
+        }
+        
+        if(Gdx.input.isTouched()){
+            click_posicao.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+            camera.unproject(click_posicao);
+            if(click_posicao.x > sprite_sair.getX() && click_posicao.x < (sprite_sair.getX() + sprite_sair.getWidth())){
+                if(click_posicao.y > sprite_sair.getY() && click_posicao.y < (sprite_sair.getY() + sprite_sair.getHeight())){
+                    Gdx.app.exit();
+                }
+            }
+        }
+        
     }
 
     @Override
