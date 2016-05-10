@@ -17,7 +17,7 @@ import thebreakingbones.TheBreakingBones;
 
 /**
  *
- * @author Matheus
+ * @author DeltaTime
  */
 public class Jogo implements Screen{
     
