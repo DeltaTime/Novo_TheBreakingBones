@@ -142,11 +142,11 @@ public class Jogo implements Screen{
             if(auxYm < 0){
             auxYm = auxYm * -1;
             }
-            if (auxYm < 20.f || auxXm < 20.f )
+            if (auxYm < 200.f && auxXm < 200.f )
                 seguirJogador();
 
             if((auxYm < 1.f && auxXm < 1.f ))
-                //sprite_player.setAlpha(0);
+                sprite_player.setAlpha(100);
 
 
             if ((sprite_inimigo.getY() < 0) || (sprite_inimigo.getY() > Gdx.graphics.getHeight() - sprite_inimigo.getHeight())){
@@ -176,11 +176,30 @@ public class Jogo implements Screen{
 
         }
 
+        if((sprite_player.getX() - sprite_inimigo.getX()) > 0 ){
+            sprite_inimigo.setX(sprite_inimigo.getX() + 50.f * Gdx.graphics.getDeltaTime());
+
+        }else{
+            sprite_inimigo.setX(sprite_inimigo.getX() - 50.f * Gdx.graphics.getDeltaTime());
+
+        }
+
+
+
+
         if((sprite_player.getY() - sprite_inimigo.getY()) < 0 ){
             sprite_inimigo.setY(sprite_inimigo.getY() - 50.f * Gdx.graphics.getDeltaTime());
 
         }else{
             sprite_inimigo.setY(sprite_inimigo.getY() + 50.f * Gdx.graphics.getDeltaTime());
+
+        }
+
+        if((sprite_player.getY() - sprite_inimigo.getY()) > 0 ){
+            sprite_inimigo.setY(sprite_inimigo.getY() + 50.f * Gdx.graphics.getDeltaTime());
+
+        }else{
+            sprite_inimigo.setY(sprite_inimigo.getY() - 50.f * Gdx.graphics.getDeltaTime());
 
         }
 
