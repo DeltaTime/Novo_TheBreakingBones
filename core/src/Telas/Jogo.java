@@ -30,7 +30,7 @@ public class Jogo implements Screen{
     private Sprite sprite_inimigo;
     float auxY = -1;
     float auxX = -1;
-    private Inimigo inimigo;
+
 
     public Jogo(TheBreakingBones game){
         this.game = game;
@@ -63,6 +63,9 @@ public class Jogo implements Screen{
 
     }
 
+    public Jogo() {
+    }
+
     @Override
     public void show() {
         
@@ -78,9 +81,10 @@ public class Jogo implements Screen{
         sprite_player.draw(game.batch);
         sprite_inimigo.draw(game.batch);
 
+
         game.batch.end();
         movimentacaoInimigo();
-        //seguirJogador();
+
 
         
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT))
@@ -159,6 +163,15 @@ public class Jogo implements Screen{
 
             sprite_inimigo.setY(sprite_inimigo.getY() + auxY * 50.f * Gdx.graphics.getDeltaTime());
             sprite_inimigo.setX(sprite_inimigo.getX()+ auxX * 50.f * Gdx.graphics.getDeltaTime());
+
+    }
+    public float sprite_playerGetY(){
+        return sprite_player.getY();
+
+    }
+
+    public float sprite_playerGetX(){
+        return sprite_player.getX();
 
     }
 
