@@ -32,9 +32,11 @@ public class TheBreakingBones extends Game{
         
         this.setScreen(new TelaAbertura(this));
     }
+    @Override
     public void render(){
         super.render();
     }
+    @Override
     public void dispose(){
         batch.dispose();
         fonte.dispose();
